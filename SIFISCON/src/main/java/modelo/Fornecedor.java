@@ -21,7 +21,7 @@ public class Fornecedor {
 	@Column(nullable = false)
 	private String razaoSocial;	
 	
-	private String incricaoMunicipal;
+	private String inscricaoMunicipal;
 	
 	@Column(nullable = false)
 	private BigDecimal receitaBruta;
@@ -55,11 +55,11 @@ public class Fornecedor {
 	public void setRazaoSocial(String razaoSocial) {
 		this.razaoSocial = razaoSocial;
 	}
-	public String getIncricaoMunicipal() {
-		return incricaoMunicipal;
+	public String getInscricaoMunicipal() {
+		return inscricaoMunicipal;
 	}
-	public void setIncricaoMunicipal(String incricaoMunicipal) {
-		this.incricaoMunicipal = incricaoMunicipal;
+	public void setInscricaoMunicipal(String incricaoMunicipal) {
+		this.inscricaoMunicipal = incricaoMunicipal;
 	}
 	public BigDecimal getReceitaBruta() {
 		return receitaBruta;
