@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Incluir Fornecedor - SIFISCON</title>
+</h:head>
+<h:body>
+    <h:form>
+		<fieldset>
+			<legend>Dados do fornecedor</legend>
+			<h:panelGrid columns="2">
+				<h:outputLabel value="CNPJ:*" for="cnpj" />
+				<h:inputText id="cnpj" value="#{fornecedorBean.fornecedor.CNPJ}" />
+				
+				<h:outputLabel value="Razão Social:*" for="razao_social" />
+				<h:inputText id="razao_social" value="#{fornecedorBean.fornecedor.razaoSocial}" />
+				
+				<h:outputLabel value="Inscrição Municipal:" for="inscricao_municipal" />
+				<h:inputText id="inscricao_municipal" value="#{fornecedorBean.fornecedor.inscricaoMunicipal}" />
+				
+				<h:outputLabel value="Receita Bruta:*" for="receita_bruta" />
+				<h:inputText id="receita_bruta" value="#{fornecedorBean.fornecedor.receitaBruta}" />
+			</h:panelGrid>
+		</fieldset>
+		<fieldset>
+			<legend>Endereço</legend>
+			<h:panelGrid columns="2">
+				<h:outputLabel value="Logradouro:*" for="logradouro" />
+				<h:inputText id="logradouro" value="#{fornecedorBean.fornecedor.endereco.logradouro}" />
+				
+				<h:outputLabel value="Número:*" for="numero" />
+				<h:inputText id="numero" value="#{fornecedorBean.fornecedor.endereco.numero}" />
+				
+				<h:outputLabel value="Complemento:" for="complemento" />
+				<h:inputText id="complemento" value="#{fornecedorBean.fornecedor.endereco.complemento}" />
+				
+				<h:outputLabel value="Bairro:*" for="bairro" />
+				<h:inputText id="bairro" value="#{fornecedorBean.fornecedor.endereco.bairro}" />
+				
+				<h:outputLabel value="CEP:*" for="cep" />
+				<h:inputText id="cep" value="#{fornecedorBean.fornecedor.endereco.cep}" />
+				
+				<h:outputLabel value="Município:*" for="municipio" />
+				<h:inputText id="municipio" value="#{fornecedorBean.fornecedor.endereco.municipio}" />
+				
+				<h:outputLabel value="Unidade Federativa:*" for="uf" />
+				<h:inputText id="uf" value="#{fornecedorBean.fornecedor.endereco.UF}" />
+			</h:panelGrid>
+		</fieldset>
+		<h:commandButton value="Salvar" action="#{fornecedorBean.adicionarFornecedor}" />
+	</h:form>
+</h:body>
+</html>

@@ -1,10 +1,13 @@
 package modelo;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 public class Fornecedor {
@@ -25,6 +28,14 @@ public class Fornecedor {
 	
 	@OneToOne	
 	private Endereco endereco;	
+	
+	@OneToMany
+	private List<Processo> processos;
+	
+	public Fornecedor() {
+		endereco = new Endereco();
+		processos = new ArrayList<Processo>();
+	}
 	
 	public int getId() {
 		return id;
@@ -61,5 +72,12 @@ public class Fornecedor {
 	}
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
+	}
+	public List<Processo> getProcessos() {
+		return processos;
+	}
+	public void setProcesso(List<Processo> processo) {
+		this.processos = processos;
 	}	
+	
 }
