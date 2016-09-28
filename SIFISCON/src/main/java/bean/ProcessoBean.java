@@ -42,7 +42,7 @@ public class ProcessoBean {
               str = "processo_incluir.xhtml";
         }
         
-        return str;
+        return str + "?faces-redirect=true";
 	}
 	
 	public void getFornecedorByCNPJ(String cnpj) {
@@ -51,8 +51,8 @@ public class ProcessoBean {
             Fornecedor fornecedor = fornecedorDAO.getByCNPJ(cnpj);            
             
             if (fornecedor == null) {
-            	msg = "Fornecedor não encontrado!";            	
-            	processo.setFornecedor(new Fornecedor());
+            	msg = "Fornecedor não encontrado!";          	
+            	processo.setFornecedor(null);
             } else {
             	processo.setFornecedor(fornecedor);
             }
@@ -90,4 +90,31 @@ public class ProcessoBean {
 		return processos;
 
 	}
+	
+	public String editarProcesso(int id) {		
+		try{
+        	ProcessoDAO processoDAO = new ProcessoDAOImpl();
+        	processo =  processoDAO.getById(id);
+        } catch(Exception e) {
+        	
+		}
+		
+		return "processo_editar.xhtml?faces-redirect=true";
+	}
+	
+	public String editarProcesso() {
+		String str = "processos.xhtml";
+		try{
+        	ProcessoDAO processoDAO = new ProcessoDAOImpl();
+        	processoDAO.update(processo);
+        	
+        	processo = new Processo();
+        } catch(Exception e) {
+        	str = "processo_editar.xhtml";
+		}
+		
+		return str + "?faces-redirect=true";
+	}
+	
+	
 }

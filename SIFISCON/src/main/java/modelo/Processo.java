@@ -53,13 +53,13 @@ public class Processo {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(new Date());
 		int ano = cal.get(Calendar.YEAR);
-		int mes = cal.get(Calendar.MONTH);
+		int mes = cal.get(Calendar.MONTH + 1);
 		int dia = cal.get(Calendar.DATE);
 		int hora = cal.get(Calendar.HOUR_OF_DAY);
 		int minuto = cal.get(Calendar.MINUTE);
 		int segundo = cal.get(Calendar.SECOND);
 		
-		return ano + mes + dia + hora + minuto + segundo + fornecedor.getCNPJ();
+		return ano + "" + mes + "" + dia + "" + hora + "" + minuto + "" + segundo + "" + fornecedor.getCNPJ();
 	}
 	
 	public String getRelatoFiscalizacao() {

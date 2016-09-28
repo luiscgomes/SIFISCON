@@ -32,14 +32,44 @@ public class ProcessoDAOImpl implements ProcessoDAO {
         }		
 	}
 
-	public void update(Processo processo) {
-		// TODO Auto-generated method stub
-		
+	public void update(Processo processo) throws Exception {
+		Transaction transaction = null;
+		Session session = null;
+        try {
+        	session = HibernateUtil.getSessionFactory().openSession();
+        	transaction = session.beginTransaction();
+            session.update(processo);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+            	transaction.rollback();
+            }
+            e.printStackTrace();
+            throw new Exception("Error ao atualizar o processo");
+        } finally {
+            session.flush();
+            session.close();
+        }				
 	}
 
-	public void remove(Processo processo) {
-		// TODO Auto-generated method stub
-		
+	public void remove(Processo processo) throws Exception {
+		Transaction transaction = null;
+		Session session = null;
+        try {
+        	session = HibernateUtil.getSessionFactory().openSession();
+        	transaction = session.beginTransaction();
+            session.delete(processo);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+            	transaction.rollback();
+            }
+            e.printStackTrace();
+            throw new Exception("Error ao excluir o processo");
+        } finally {
+            session.flush();
+            session.close();
+        }				
 	}
 
 	public List<Processo> getAll() {
@@ -56,6 +86,20 @@ public class ProcessoDAOImpl implements ProcessoDAO {
             session.close();
         }
         return processos;
+	}
+	
+	public Processo getById(int id) {
+		Processo processo = null;
+        
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+             processo = (Processo) session.get(Processo.class, id);
+        } finally {
+            session.flush();
+            session.close();
+        }
+        
+        return processo;
 	}
 
 }
