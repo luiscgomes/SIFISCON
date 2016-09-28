@@ -33,7 +33,7 @@ public class FornecedorBean {
               str = "fornecedor_incluir.xhtml";
         }
         
-        return str;
+        return str + "?faces-redirect=true";
      }
 	
 	public List<Fornecedor> getFornecedores(){

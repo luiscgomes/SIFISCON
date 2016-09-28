@@ -53,11 +53,18 @@
 	               </p:column>
 	               <p:column  exportable="false">
 	               		<h:form>
-							<p:commandButton ajax="false" icon="ui-icon-pencil" action="#{processoBean.editarProcesso(p.id)}">
+							<p:commandButton ajax="false" icon="ui-icon-pencil" action="#{processoBean.editarProcesso(p)}">
 							</p:commandButton>
-							<p:commandButton ajax="false" icon="ui-icon-trash" action="#{processoBean.excluirProcesso(p)}">
+							<p:commandButton icon="ui-icon-trash" update="@form" action="#{processoBean.excluirProcesso(p)}">
+								<p:confirm header="Confirmar" message="Deseja remover o processo: #{p.numeroProcesso}?" icon="ui-icon-alert" />
 							</p:commandButton>
+							
+							<p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+							    <p:commandButton title="GDelYesButton" value="Sim" styleClass="ui-confirmdialog-yes"/>
+							    <p:commandButton title="GDelNoButton" value="Não" styleClass="ui-confirmdialog-no" />
+							</p:confirmDialog>
 						</h:form>
+						
 					</p:column>
 	         </p:dataTable>
          </div>

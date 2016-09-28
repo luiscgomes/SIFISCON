@@ -22,6 +22,7 @@ public class ProcessoBean {
 	private List<Processo> processos;
 
 	public Processo getProcesso() {
+		this.msg = "";
 		return processo;
 	}
 
@@ -91,13 +92,9 @@ public class ProcessoBean {
 
 	}
 	
-	public String editarProcesso(int id) {		
-		try{
-        	ProcessoDAO processoDAO = new ProcessoDAOImpl();
-        	processo =  processoDAO.getById(id);
-        } catch(Exception e) {
-        	
-		}
+	public String editarProcesso(Processo processo) {		
+		this.processo = processo; 
+		this.msg = "";
 		
 		return "processo_editar.xhtml?faces-redirect=true";
 	}
@@ -116,5 +113,17 @@ public class ProcessoBean {
 		return str + "?faces-redirect=true";
 	}
 	
-	
+	public String excluirProcesso(Processo p) {
+		String str = "processos.xhtml";
+		try{
+        	ProcessoDAO processoDAO = new ProcessoDAOImpl();
+        	processoDAO.remove(p);
+        	
+        	this.msg = "Processo excluído com sucesso!";
+        } catch(Exception e) {
+        	this.msg = "Erro ao excluir processo";
+		}
+		
+		return str + "?faces-redirect=true";
+	}
 }
