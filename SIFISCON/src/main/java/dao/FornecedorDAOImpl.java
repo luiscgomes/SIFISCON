@@ -3,6 +3,7 @@ package dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -13,8 +14,9 @@ public class FornecedorDAOImpl implements FornecedorDAO {
 
 	public void add(Fornecedor fornecedor) throws Exception {
 		Transaction transaction = null;
-		Session session = HibernateUtil.getSessionFactory().openSession();
+		Session session = null;
         try {
+        	session = HibernateUtil.getSessionFactory().openSession();
         	transaction = session.beginTransaction();
             session.save(fornecedor);
             session.getTransaction().commit();
@@ -28,6 +30,24 @@ public class FornecedorDAOImpl implements FornecedorDAO {
             session.flush();
             session.close();
         }		
+	}
+	
+	public Fornecedor getByCNPJ(String cnpj) {
+		Fornecedor fornecedor = null;
+		Session session = null;
+        try {
+        	session = HibernateUtil.getSessionFactory().openSession();
+        	Query query= session.
+        	        createQuery("from Fornecedor where cnpj=:cnpj");
+        	query.setParameter("cnpj", cnpj);
+        	fornecedor = (Fornecedor) query.uniqueResult();            
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.flush();
+            session.close();
+        }
+        return fornecedor;	
 	}
 
 	public List<Fornecedor> getAll() {

@@ -41,7 +41,7 @@ public class FornecedorBean {
         
         try{
         	FornecedorDAO fornecedorDAO = new FornecedorDAOImpl();
-        	fornecedores = fornecedorDAO.getAll();
+        	fornecedores =  fornecedorDAO.getAll();
         } catch(Exception e) {
         	
 		}

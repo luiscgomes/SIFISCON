@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml"
+         xmlns:h="http://java.sun.com/jsf/html"
+         xmlns:f="http://java.sun.com/jsf/core"
+         xmlns:ui="http://java.sun.com/jsf/facelets"
+         xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Processos - SIFISCON</title>
+</h:head>
+  <h:body>  
+  		<div>
+  			<ul style="list-style: none">
+  				<li style="display: inline-block">
+  					<h1>SIFISCON</h1>
+  				</li>
+  				<li style="display: inline-block;margin-left: 20px"><a href="index.xhtml">Home</a></li>
+  				<li style="display: inline-block;margin-left: 20px"><a href="fornecedores.xhtml">Fornecedores</a></li>
+  				<li style="display: inline-block;margin-left: 20px"><a href="processos.xhtml">Processos</a></li>
+  			</ul>  		
+  		</div>          
+  		<div>
+  			<h2>
+  				Processos
+  			</h2>
+  		</div>
+  		<div>
+  			<a href="processo_incluir.xhtml">Novo processo</a>
+  			<br/>
+  			<br/>  			
+	         <p:dataTable emptyMessage="Não há processos cadastrados"
+	               value="#{processoBean.processos}" var="p" styleClass="order-table"
+	               headerClass="order-table-header"
+	               rowClasses="order-table-odd-row,order-table-even-row" paginator="true"
+	               rows="20">
+	               <p:column headerText="Número do processo">
+	                      <h:outputText value="#{p.numeroProcesso}" />
+	               </p:column>
+	               <p:column headerText="Razão Social">
+	                      <h:outputText value="#{p.fornecedor.razaoSocial}" />
+	               </p:column>
+	               <p:column headerText="CNPJ">
+	                      <h:outputText value="#{p.fornecedor.CNPJ}" />
+	               </p:column>
+	               <p:column headerText="Fiscal responsável">
+	                      <h:outputText value="#{p.fiscalResponsavel}" />
+	               </p:column>
+	               <p:column headerText="Data do relato">
+	                      <h:outputText value="#{p.dataRelato}" >
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						   </h:outputText>
+	               </p:column>
+	               <p:column  exportable="false">
+						<p:commandButton icon="ui-icon-pencil" action="#{processoBean.editarProcesso(p)}">
+						</p:commandButton>
+					</p:column>
+					<p:column  exportable="false">
+						<p:commandButton icon="ui-icon-trash" action="#{processoBean.excluirProcesso(p)}">
+						</p:commandButton>
+					</p:column>
+	         </p:dataTable>
+         </div>
+  </h:body>
+  </html>

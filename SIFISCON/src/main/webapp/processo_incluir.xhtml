@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">    
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Incluir processo - SIFISCON</title>
+</h:head>
+<h:body>
+	<div>
+		<ul style="list-style: none">
+			<li style="display: inline-block">
+				<h1>SIFISCON</h1>
+			</li>
+			<li style="display: inline-block;margin-left: 20px"><a href="index.xhtml">Home</a></li>
+			<li style="display: inline-block;margin-left: 20px"><a href="fornecedores.xhtml">Fornecedores</a></li>
+			<li style="display: inline-block;margin-left: 20px"><a href="processos.xhtml">Processos</a></li>
+		</ul>  		
+	</div>          
+	<div>
+		<h2>
+			Incluir processo
+		</h2>
+	</div>
+    <h:form>
+    	<p:outputLabel value="#{processoBean.msg}" id="msg1" styleClass="msg" />
+    	<br/>
+    	<br/>
+		<p:fieldset legend="Fornecedor">
+			<div>						
+				<p:outputLabel value="CNPJ:*"/>
+				<p:inputMask disabled="#{!empty processoBean.processo.fornecedor.CNPJ}" id="cnpj" mask="99.999.999/9999-99" value="#{processoBean.processo.fornecedor.CNPJ}"  required="true" requiredMessage="Por favor, preencha o CPNJ" maxlength="14">
+				</p:inputMask>						
+				<p:commandButton rendered="#{empty processoBean.processo.fornecedor.CNPJ}" icon="ui-icon-search" action="#{processoBean.getFornecedorByCNPJ(processoBean.processo.fornecedor.CNPJ)}" update="@form"></p:commandButton>				
+				<p:message for="cnpj"></p:message>						
+			</div>
+			<div>
+				<p:outputLabel value="Razão Social:" rendered="#{!empty processoBean.processo.fornecedor.CNPJ}" ></p:outputLabel>
+				<p:inputText disabled="true" rendered="#{!empty processoBean.processo.fornecedor.CNPJ}" id="razaoSocial" value="#{processoBean.processo.fornecedor.razaoSocial}" required="true" requiredMessage="Por favor, preencha a Razão Social" maxlength="200"></p:inputText>
+				<p:message for="razaoSocial"></p:message>
+			</div>	
+			<div>
+				<p:outputLabel value="Inscrição Municipal:"  rendered="#{!empty processoBean.processo.fornecedor.CNPJ}" ></p:outputLabel>
+				<p:inputMask disabled="true"  rendered="#{!empty processoBean.processo.fornecedor.CNPJ}"  mask="9.999.999-9" maxlength="8" value="#{processoBean.processo.fornecedor.inscricaoMunicipal}"></p:inputMask>
+			</div>
+			<div>
+				<p:outputLabel value="Receita Bruta:" rendered="#{!empty processoBean.processo.fornecedor.CNPJ}"></p:outputLabel>
+				<p:inputText disabled="true"  rendered="#{!empty processoBean.processo.fornecedor.CNPJ}"  id="receitaBruta" value="#{processoBean.processo.fornecedor.receitaBruta}" required="true" requiredMessage="Por favor, preencha a Receita Bruta">
+					<f:convertNumber pattern="#,##0.00"></f:convertNumber>
+				</p:inputText>
+				<p:message for="receitaBruta"></p:message>
+			</div>		
+		</p:fieldset>
+	</h:form>
+	<h:form>		
+		<p:fieldset legend="Dados do Processo">
+			<div>
+				<p:outputLabel value="Relato da Fiscalização:*"></p:outputLabel>
+				<p:inputText id="relatoFiscalizacao" value="#{processoBean.processo.relatoFiscalizacao}" required="true" requiredMessage="Por favor, preencha o Relato da Fiscalização" maxlength="1000"></p:inputText>
+				<p:message for="relatoFiscalizacao"></p:message>
+			</div>
+			<div>
+				<p:outputLabel value="Data do Relato:*"></p:outputLabel>
+				<p:inputMask mask="99/99/9999" id="dataRelato" value="#{processoBean.processo.dataRelato}" required="true" requiredMessage="Por favor, preencha a Data do Relato" maxlength="10">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</p:inputMask>
+				<p:message for="dataRelato"></p:message>
+			</div>
+			<div>
+				<p:outputLabel value="Fiscal Resposável:*"></p:outputLabel>
+				<p:inputText id="fiscalResponsavel" value="#{processoBean.processo.fiscalResponsavel}" required="true" requiredMessage="Por favor, preencha o Fiscal Resposável" maxlength="100"></p:inputText>
+				<p:message for="fiscalResponsavel"></p:message>
+			</div>
+		</p:fieldset>		
+		
+		<div>
+			<p:commandButton value="Salvar" icon="ui-icon-disk" ajax="false"  id="cadastrar" action="#{processoBean.adicionarProcesso()}" /> 
+		</div>
+	</h:form>
+		
+</h:body>
+</html>

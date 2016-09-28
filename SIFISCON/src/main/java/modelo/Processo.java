@@ -18,7 +18,7 @@ public class Processo {
 	private String numeroProcesso;
 	
 	@Column(nullable = false)
-	private StringBuilder relatoFiscalizacao;
+	private String relatoFiscalizacao;
 	
 	@Column(nullable = false)
 	private Date dataRelato;
@@ -30,8 +30,7 @@ public class Processo {
 	private Fornecedor fornecedor;
 	
 	public Processo(Fornecedor fornecedor) {
-		this.fornecedor = fornecedor;
-		this.numeroProcesso = gerarNumeroProcesso();
+		this.fornecedor = fornecedor;		
 	}
 	
 	public int getId() {
@@ -44,7 +43,11 @@ public class Processo {
 		this.id = id;
 	}
 
+	
 
+	public void setNumeroProcesso(String numeroProcesso) {
+		this.numeroProcesso = numeroProcesso;
+	}
 
 	public String getNumeroProcesso() {
 		return this.numeroProcesso;
@@ -63,11 +66,11 @@ public class Processo {
 		return ano + mes + dia + hora + minuto + segundo + fornecedor.getCNPJ();
 	}
 	
-	public StringBuilder getRelatoFiscalizacao() {
+	public String getRelatoFiscalizacao() {
 		return relatoFiscalizacao;
 	}
 	
-	public void setRelatoFiscalizacao(StringBuilder relatoFiscalizacao) {
+	public void setRelatoFiscalizacao(String relatoFiscalizacao) {
 		this.relatoFiscalizacao = relatoFiscalizacao;
 	}
 	
