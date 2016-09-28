@@ -32,7 +32,7 @@ public class Endereco {
 	@Column(nullable = false)
 	private String UF;
 	
-	@OneToOne
+	@OneToOne(mappedBy = "endereco")
 	private Fornecedor fornecedor;	
 	
 	public int getId() {

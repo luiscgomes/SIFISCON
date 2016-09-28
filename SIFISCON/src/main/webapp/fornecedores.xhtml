@@ -9,26 +9,44 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Fornecedores - SIFISCON</title>
 </h:head>
-  <h:body>            
-         <p:dataTable emptyMessage="Não há fornecedores cadastradas"
-               value="#{fornecedorBean.getListaFornecedores()}" var="f" styleClass="order-table"
-               headerClass="order-table-header"
-               rowClasses="order-table-odd-row,order-table-even-row" paginator="true"
-               rows="20">
-               <p:column headerText="CNPJ" sortBy="#{f.CNPJ}" filterBy="#{f.CNPJ}"
-                      filterMatchMode="exact">
-                      <h:outputText value="#{f.CNPJ}" />
-               </p:column>
-               <p:column headerText="Razão Social" sortBy="#{f.razaoSocial}"
-                      filterBy="#{f.razaoSocial}" filterMatchMode="exact">
-                      <h:outputText value="#{f.razaoSocial}" />
-               </p:column>
-               <p:column headerText="Inscrição Municipal">
-                      <h:outputText value="#{f.inscricaoMunicipal}" />
-               </p:column>
-               <p:column headerText="Receita Bruta">
-                      <h:outputText value="#{f.receitaBruta}" />
-               </p:column>
-         </p:dataTable>
+  <h:body>  
+  		<div>
+  			<ul style="list-style: none">
+  				<li style="display: inline-block">
+  					<h1>SIFISCON</h1>
+  				</li>
+  				<li style="display: inline-block;margin-left: 20px"><a href="index.xhtml">Home</a></li>
+  				<li style="display: inline-block;margin-left: 20px"><a href="fornecedores.xhtml">Fornecedores</a></li>
+  				<li style="display: inline-block;margin-left: 20px"><a href="processos.xhtml">Processos</a></li>
+  			</ul>  		
+  		</div>          
+  		<div>
+  			<h2>
+  				Fornecedores
+  			</h2>
+  		</div>
+  		<div>
+  			<a href="fornecedor_incluir.xhtml">Novo fornecedor</a>
+  			<br/>
+  			<br/>  			
+	         <p:dataTable emptyMessage="Não há fornecedores cadastradas"
+	               value="#{fornecedorBean.fornecedores}" var="f" styleClass="order-table"
+	               headerClass="order-table-header"
+	               rowClasses="order-table-odd-row,order-table-even-row" paginator="true"
+	               rows="20">
+	               <p:column headerText="CNPJ">
+	                      <h:outputText value="#{f.CNPJ}" />
+	               </p:column>
+	               <p:column headerText="Razão Social">
+	                      <h:outputText value="#{f.razaoSocial}" />
+	               </p:column>
+	               <p:column headerText="Inscrição Municipal">
+	                      <h:outputText value="#{f.inscricaoMunicipal}" />
+	               </p:column>
+	               <p:column headerText="Receita Bruta">
+	                      R$ <h:outputText value="#{f.receitaBruta}" />
+	               </p:column>
+	         </p:dataTable>
+         </div>
   </h:body>
   </html>

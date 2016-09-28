@@ -10,6 +10,10 @@
 		<property name="hibernate.connection.username">root</property>
 		<property name="hibernate.connection.password">P@ssw0rd</property>
 		<property name="show_sql">true</property>		
-		<property name="hibernate.hbm2ddl.auto">create</property>
+		<property name="hbm2ddl.auto">update</property>
+		
+		<mapping class="modelo.Endereco" />
+        <mapping class="modelo.Fornecedor" />
+        <mapping class="modelo.Processo" />
 	</session-factory>
 </hibernate-configuration>

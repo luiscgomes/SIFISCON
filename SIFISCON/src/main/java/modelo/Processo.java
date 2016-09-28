@@ -5,12 +5,16 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
 public class Processo {	
 	@Id
+	@GeneratedValue
+	private int id;
+	
 	private String numeroProcesso;
 	
 	@Column(nullable = false)
@@ -30,6 +34,18 @@ public class Processo {
 		this.numeroProcesso = gerarNumeroProcesso();
 	}
 	
+	public int getId() {
+		return id;
+	}
+
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+
 	public String getNumeroProcesso() {
 		return this.numeroProcesso;
 	}

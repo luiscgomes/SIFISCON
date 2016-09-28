@@ -2,55 +2,124 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
     xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core">
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">    
 <h:head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Incluir Fornecedor - SIFISCON</title>
 </h:head>
 <h:body>
+	<div>
+		<ul style="list-style: none">
+			<li style="display: inline-block">
+				<h1>SIFISCON</h1>
+			</li>
+			<li style="display: inline-block;margin-left: 20px"><a href="index.xhtml">Home</a></li>
+			<li style="display: inline-block;margin-left: 20px"><a href="fornecedores.xhtml">Fornecedores</a></li>
+			<li style="display: inline-block;margin-left: 20px"><a href="processos.xhtml">Processos</a></li>
+		</ul>  		
+	</div>          
+	<div>
+		<h2>
+			Incluir fornecedor
+		</h2>
+	</div>
     <h:form>
-		<fieldset>
-			<legend>Dados do fornecedor</legend>
-			<h:panelGrid columns="2">
-				<h:outputLabel value="CNPJ:*" for="cnpj" />
-				<h:inputText id="cnpj" value="#{fornecedorBean.fornecedor.CNPJ}" />
-				
-				<h:outputLabel value="Razão Social:*" for="razao_social" />
-				<h:inputText id="razao_social" value="#{fornecedorBean.fornecedor.razaoSocial}" />
-				
-				<h:outputLabel value="Inscrição Municipal:" for="inscricao_municipal" />
-				<h:inputText id="inscricao_municipal" value="#{fornecedorBean.fornecedor.inscricaoMunicipal}" />
-				
-				<h:outputLabel value="Receita Bruta:*" for="receita_bruta" />
-				<h:inputText id="receita_bruta" value="#{fornecedorBean.fornecedor.receitaBruta}" />
-			</h:panelGrid>
-		</fieldset>
-		<fieldset>
-			<legend>Endereço</legend>
-			<h:panelGrid columns="2">
-				<h:outputLabel value="Logradouro:*" for="logradouro" />
-				<h:inputText id="logradouro" value="#{fornecedorBean.fornecedor.endereco.logradouro}" />
-				
-				<h:outputLabel value="Número:*" for="numero" />
-				<h:inputText id="numero" value="#{fornecedorBean.fornecedor.endereco.numero}" />
-				
-				<h:outputLabel value="Complemento:" for="complemento" />
-				<h:inputText id="complemento" value="#{fornecedorBean.fornecedor.endereco.complemento}" />
-				
-				<h:outputLabel value="Bairro:*" for="bairro" />
-				<h:inputText id="bairro" value="#{fornecedorBean.fornecedor.endereco.bairro}" />
-				
-				<h:outputLabel value="CEP:*" for="cep" />
-				<h:inputText id="cep" value="#{fornecedorBean.fornecedor.endereco.cep}" />
-				
-				<h:outputLabel value="Município:*" for="municipio" />
-				<h:inputText id="municipio" value="#{fornecedorBean.fornecedor.endereco.municipio}" />
-				
-				<h:outputLabel value="Unidade Federativa:*" for="uf" />
-				<h:inputText id="uf" value="#{fornecedorBean.fornecedor.endereco.UF}" />
-			</h:panelGrid>
-		</fieldset>
-		<h:commandButton value="Salvar" action="#{fornecedorBean.adicionarFornecedor}" />
+		<p:fieldset legend="Dados do Fornecedor">
+			<div>
+				<p:outputLabel value="CNPJ:"/>
+				<p:inputMask id="cnpj" mask="99.999.999/9999-99" value="#{fornecedorBean.fornecedor.CNPJ}" required="true" requiredMessage="Por favor, preencha o CNPJ" maxlength="14"></p:inputMask>
+				<p:message for="cnpj"></p:message>
+			</div>
+			<div>
+				<p:outputLabel value="Razão Social:"></p:outputLabel>
+				<p:inputText id="razaoSocial" value="#{fornecedorBean.fornecedor.razaoSocial}" required="true" requiredMessage="Por favor, preencha a Razão Social" maxlength="200"></p:inputText>
+				<p:message for="razaoSocial"></p:message>
+			</div>
+			<div>
+				<p:outputLabel value="Inscrição Municipal:"></p:outputLabel>
+				<p:inputMask mask="9.999.999-9" maxlength="8" value="#{fornecedorBean.fornecedor.inscricaoMunicipal}"></p:inputMask>
+			</div>
+			<div>
+				<p:outputLabel value="Receita Bruta:"></p:outputLabel>
+				<p:inputText id="receitaBruta" value="#{fornecedorBean.fornecedor.receitaBruta}" required="true" requiredMessage="Campo Receita Bruta é obrigatório">
+					<f:convertNumber pattern="#,##0.00"></f:convertNumber>
+				</p:inputText>
+				<p:message for="receitaBruta"></p:message>
+			</div>			
+		</p:fieldset>
+		<br/>
+		<br/>
+		<p:fieldset legend="Endereço">
+			<div>
+				<p:outputLabel value="Logradouro:"></p:outputLabel>
+				<p:inputText id="endereco" value="#{fornecedorBean.fornecedor.endereco.logradouro}" required="true" requiredMessage="Por favor, preencha o Logradouro" maxlength="100"></p:inputText>
+				<p:message for="endereco"></p:message>
+			</div>
+			<div>
+				<p:outputLabel value="Número:"></p:outputLabel>
+				<p:inputText id="numero" value="#{fornecedorBean.fornecedor.endereco.numero}" required="true" requiredMessage="Por favor, preencha o Número" maxlength="50"></p:inputText>
+				<p:message for="numero"></p:message>
+			</div>
+			<div>
+				<p:outputLabel value="Complemento:"></p:outputLabel>
+				<p:inputText value="#{fornecedorBean.fornecedor.endereco.complemento}" maxlength="50"></p:inputText>
+			</div>
+			<div>
+				<p:outputLabel value="Bairro:"></p:outputLabel>
+				<p:inputText id="bairro" value="#{fornecedorBean.fornecedor.endereco.bairro}" required="true" requiredMessage="Por favor, preencha o Bairro" maxlength="100"></p:inputText>
+				<p:message for="bairro"></p:message>
+			</div>
+			<div>
+				<p:outputLabel value="CEP:"></p:outputLabel>
+				<p:inputMask id="cep" mask="99999-999" value="#{fornecedorBean.fornecedor.endereco.cep}" required="true" requiredMessage="Por favor, preencha o CEP" maxlength="8"></p:inputMask>
+				<p:message for="cep"></p:message>
+			</div>
+			<div>
+				<p:outputLabel value="Município:"></p:outputLabel>
+				<p:inputText id="municipio" value="#{fornecedorBean.fornecedor.endereco.municipio}" required="true" requiredMessage="Por favor, preencha o Município" maxlength="200"></p:inputText>
+				<p:message for="municipio"></p:message>
+			</div>
+			<div>
+				<p:outputLabel value="UF:"></p:outputLabel>
+				<p:selectOneMenu id="uf" value="#{fornecedorBean.fornecedor.endereco.UF}" required="true" requiredMessage="Por favor, informe o  Estado">
+					<f:selectItem itemLabel="Selecione um estado" itemValue="" noSelectionOption="true" />
+					<f:selectItem itemLabel="Acre" itemValue="AC" />
+					<f:selectItem itemLabel="Alagoas" itemValue="AL"/> 
+					<f:selectItem itemLabel="Amapá" itemValue="AP"/> 
+					<f:selectItem itemLabel="Amazonas" itemValue="AM"/> 
+					<f:selectItem itemLabel="Bahia" itemValue="BA"/> 
+					<f:selectItem itemLabel="Ceará" itemValue="CE"/> 
+					<f:selectItem itemLabel="Distrito Federal" itemValue="DF"/> 
+					<f:selectItem itemLabel="Espírito Santo" itemValue="ES"/> 
+					<f:selectItem itemLabel="Goiás" itemValue="GO"/> 
+					<f:selectItem itemLabel="Maranhão" itemValue="MA"/> 
+					<f:selectItem itemLabel="Mato Grosso" itemValue="MT"/> 
+					<f:selectItem itemLabel="Mato Grosso do Sul" itemValue="MS"/> 
+					<f:selectItem itemLabel="Minas Gerais" itemValue="MG"/> 
+					<f:selectItem itemLabel="Pará" itemValue="PA"/> 
+					<f:selectItem itemLabel="Paraíba" itemValue="PB"/> 
+					<f:selectItem itemLabel="Paraná" itemValue="PR"/> 
+					<f:selectItem itemLabel="Pernambuco" itemValue="PE"/> 
+					<f:selectItem itemLabel="Piauí" itemValue="PI"/> 
+					<f:selectItem itemLabel="Rio de Janeiro" itemValue="RJ"/> 
+					<f:selectItem itemLabel="Rio Grande do Norte" itemValue="RN"/> 
+					<f:selectItem itemLabel="Rio Grande do Sul" itemValue="RS"/> 
+					<f:selectItem itemLabel="Rondônia" itemValue="RO"/> 
+					<f:selectItem itemLabel="Roraima" itemValue="RR"/> 
+					<f:selectItem itemLabel="Santa Catarina" itemValue="SC"/> 
+					<f:selectItem itemLabel="São Paulo" itemValue="SP"/> 
+					<f:selectItem itemLabel="Sergipe" itemValue="SE"/> 
+					<f:selectItem itemLabel="Tocantins" itemValue="TO"/> 
+				</p:selectOneMenu>
+				<p:message for="uf"></p:message>
+			</div>					
+		</p:fieldset>
+		<div>
+			<p:commandButton value="Salvar" id="salvar" ajax="false" action="#{fornecedorBean.adicionarFornecedor()}" /> 
+		</div>
+			
 	</h:form>
+		
 </h:body>
 </html>

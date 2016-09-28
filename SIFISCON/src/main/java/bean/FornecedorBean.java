@@ -36,20 +36,12 @@ public class FornecedorBean {
         return str;
      }
 	
-	public List<FornecedorBean> getListaFornecedores(){
-        List<FornecedorBean> fornecedores = new ArrayList<FornecedorBean>();
+	public List<Fornecedor> getFornecedores(){
+        List<Fornecedor> fornecedores = new ArrayList<Fornecedor>();
         
         try{
         	FornecedorDAO fornecedorDAO = new FornecedorDAOImpl();
-        	
-        	for(Fornecedor fornecedor : fornecedorDAO.getAll()){
-
-        		FornecedorBean bean = new FornecedorBean();
-        		bean.setFornecedor(fornecedor);
-        		
-        		fornecedores.add(bean);
-        	}
-
+        	fornecedores = fornecedorDAO.getAll();
         } catch(Exception e) {
         	
 		}
