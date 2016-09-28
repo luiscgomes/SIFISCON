@@ -1,10 +1,12 @@
 package dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import modelo.Fornecedor;
 import modelo.Processo;
 import util.HibernateUtil;
 
@@ -41,8 +43,19 @@ public class ProcessoDAOImpl implements ProcessoDAO {
 	}
 
 	public List<Processo> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Processo> processos = new ArrayList<Processo>();
+        
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+       	 processos = session.createQuery("from Processo").list();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.flush();
+            session.close();
+        }
+        return processos;
 	}
 
 }

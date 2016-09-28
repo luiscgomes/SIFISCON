@@ -29,10 +29,6 @@ public class Processo {
 	@ManyToOne
 	private Fornecedor fornecedor;
 	
-	public Processo(Fornecedor fornecedor) {
-		this.fornecedor = fornecedor;		
-	}
-	
 	public int getId() {
 		return id;
 	}

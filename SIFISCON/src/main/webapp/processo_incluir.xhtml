@@ -24,16 +24,27 @@
 			Incluir processo
 		</h2>
 	</div>
-    <h:form>
+    <h:form rendered="#{processoBean.processo.fornecedor == null}">
     	<p:outputLabel value="#{processoBean.msg}" id="msg1" styleClass="msg" />
     	<br/>
     	<br/>
 		<p:fieldset legend="Fornecedor">
 			<div>						
 				<p:outputLabel value="CNPJ:*"/>
-				<p:inputMask disabled="#{!empty processoBean.processo.fornecedor.CNPJ}" id="cnpj" mask="99.999.999/9999-99" value="#{processoBean.processo.fornecedor.CNPJ}"  required="true" requiredMessage="Por favor, preencha o CPNJ" maxlength="14">
+				<p:inputMask disabled="#{!empty processoBean.processo.fornecedor.CNPJ}" id="cnpj" mask="99.999.999/9999-99" value="#{processoBean.cpnjFornecedor}"  required="true" requiredMessage="Por favor, preencha o CPNJ" maxlength="14">
 				</p:inputMask>						
-				<p:commandButton rendered="#{empty processoBean.processo.fornecedor.CNPJ}" icon="ui-icon-search" action="#{processoBean.getFornecedorByCNPJ(processoBean.processo.fornecedor.CNPJ)}" update="@form"></p:commandButton>				
+				<p:commandButton ajax="false" rendered="#{empty processoBean.processo.fornecedor.CNPJ}" icon="ui-icon-search" action="#{processoBean.getFornecedorByCNPJ(processoBean.cpnjFornecedor)}" update="@form"></p:commandButton>				
+				<p:message for="cnpj"></p:message>						
+			</div>		
+		</p:fieldset>
+	</h:form>
+	<h:form rendered="#{processoBean.processo.fornecedor != null}">
+		<p:fieldset legend="Dados do Fornecedor">
+			<div>						
+				<p:outputLabel value="CNPJ:*"/>
+				<p:inputMask disabled="#{!empty processoBean.processo.fornecedor.CNPJ}" id="cnpj" mask="99.999.999/9999-99" value="#{processoBean.cpnjFornecedor}"  required="true" requiredMessage="Por favor, preencha o CPNJ" maxlength="14">
+				</p:inputMask>						
+				<p:commandButton ajax="false" rendered="#{empty processoBean.processo.fornecedor.CNPJ}" icon="ui-icon-search" action="#{processoBean.getFornecedorByCNPJ(processoBean.cpnjFornecedor)}" update="@form"></p:commandButton>				
 				<p:message for="cnpj"></p:message>						
 			</div>
 			<div>
@@ -52,9 +63,7 @@
 				</p:inputText>
 				<p:message for="receitaBruta"></p:message>
 			</div>		
-		</p:fieldset>
-	</h:form>
-	<h:form>		
+		</p:fieldset>		
 		<p:fieldset legend="Dados do Processo">
 			<div>
 				<p:outputLabel value="Relato da Fiscalização:*"></p:outputLabel>
