@@ -27,21 +27,21 @@
     <h:form>
 		<p:fieldset legend="Dados do Fornecedor">
 			<div>
-				<p:outputLabel value="CNPJ:"/>
+				<p:outputLabel value="CNPJ:*"/>
 				<p:inputMask id="cnpj" mask="99.999.999/9999-99" value="#{fornecedorBean.fornecedor.CNPJ}" required="true" requiredMessage="Por favor, preencha o CNPJ" maxlength="14"></p:inputMask>
 				<p:message for="cnpj"></p:message>
 			</div>
 			<div>
-				<p:outputLabel value="Razão Social:"></p:outputLabel>
+				<p:outputLabel value="Razão Social:*"></p:outputLabel>
 				<p:inputText id="razaoSocial" value="#{fornecedorBean.fornecedor.razaoSocial}" required="true" requiredMessage="Por favor, preencha a Razão Social" maxlength="200"></p:inputText>
 				<p:message for="razaoSocial"></p:message>
 			</div>
 			<div>
-				<p:outputLabel value="Inscrição Municipal:"></p:outputLabel>
+				<p:outputLabel value="Inscrição Municipal:*"></p:outputLabel>
 				<p:inputMask mask="9.999.999-9" maxlength="8" value="#{fornecedorBean.fornecedor.inscricaoMunicipal}"></p:inputMask>
 			</div>
 			<div>
-				<p:outputLabel value="Receita Bruta:"></p:outputLabel>
+				<p:outputLabel value="Receita Bruta:*"></p:outputLabel>
 				<p:inputText id="receitaBruta" value="#{fornecedorBean.fornecedor.receitaBruta}" required="true" requiredMessage="Campo Receita Bruta é obrigatório">
 					<f:convertNumber pattern="#,##0.00"></f:convertNumber>
 				</p:inputText>
@@ -52,12 +52,12 @@
 		<br/>
 		<p:fieldset legend="Endereço">
 			<div>
-				<p:outputLabel value="Logradouro:"></p:outputLabel>
+				<p:outputLabel value="Logradouro:*"></p:outputLabel>
 				<p:inputText id="endereco" value="#{fornecedorBean.fornecedor.endereco.logradouro}" required="true" requiredMessage="Por favor, preencha o Logradouro" maxlength="100"></p:inputText>
 				<p:message for="endereco"></p:message>
 			</div>
 			<div>
-				<p:outputLabel value="Número:"></p:outputLabel>
+				<p:outputLabel value="Número:*"></p:outputLabel>
 				<p:inputText id="numero" value="#{fornecedorBean.fornecedor.endereco.numero}" required="true" requiredMessage="Por favor, preencha o Número" maxlength="50"></p:inputText>
 				<p:message for="numero"></p:message>
 			</div>
@@ -66,22 +66,22 @@
 				<p:inputText value="#{fornecedorBean.fornecedor.endereco.complemento}" maxlength="50"></p:inputText>
 			</div>
 			<div>
-				<p:outputLabel value="Bairro:"></p:outputLabel>
+				<p:outputLabel value="Bairro:*"></p:outputLabel>
 				<p:inputText id="bairro" value="#{fornecedorBean.fornecedor.endereco.bairro}" required="true" requiredMessage="Por favor, preencha o Bairro" maxlength="100"></p:inputText>
 				<p:message for="bairro"></p:message>
 			</div>
 			<div>
-				<p:outputLabel value="CEP:"></p:outputLabel>
+				<p:outputLabel value="CEP:*"></p:outputLabel>
 				<p:inputMask id="cep" mask="99999-999" value="#{fornecedorBean.fornecedor.endereco.cep}" required="true" requiredMessage="Por favor, preencha o CEP" maxlength="8"></p:inputMask>
 				<p:message for="cep"></p:message>
 			</div>
 			<div>
-				<p:outputLabel value="Município:"></p:outputLabel>
+				<p:outputLabel value="Município:*"></p:outputLabel>
 				<p:inputText id="municipio" value="#{fornecedorBean.fornecedor.endereco.municipio}" required="true" requiredMessage="Por favor, preencha o Município" maxlength="200"></p:inputText>
 				<p:message for="municipio"></p:message>
 			</div>
 			<div>
-				<p:outputLabel value="UF:"></p:outputLabel>
+				<p:outputLabel value="UF:*"></p:outputLabel>
 				<p:selectOneMenu id="uf" value="#{fornecedorBean.fornecedor.endereco.UF}" required="true" requiredMessage="Por favor, informe o  Estado">
 					<f:selectItem itemLabel="Selecione um estado" itemValue="" noSelectionOption="true" />
 					<f:selectItem itemLabel="Acre" itemValue="AC" />

@@ -34,7 +34,10 @@
 		    		<p:dataExporter type="pdf" target="tblProcessos" fileName="relatorio_processos" encoding="iso-8859-1"></p:dataExporter>
 		    	</h:commandLink>	    	
 	  			<br/>
-	  			<br/>  			
+	  			<br/>
+	  			<p:outputLabel value="#{processoBean.msg}" id="msg1" styleClass="msg" />
+	  			<br/>
+	  			<br/>		
 		         <p:dataTable emptyMessage="Não há processos cadastrados" id="tblProcessos"
 		               value="#{processoBean.processos}" var="p" styleClass="order-table"
 		               headerClass="order-table-header"
