@@ -25,48 +25,55 @@
   				Processos
   			</h2>
   		</div>
-  		<div>
+  		<div>  			
   			<a href="processo_incluir.xhtml">Novo processo</a>
-  			<br/>
-  			<br/>  			
-	         <p:dataTable emptyMessage="Não há processos cadastrados"
-	               value="#{processoBean.processos}" var="p" styleClass="order-table"
-	               headerClass="order-table-header"
-	               rowClasses="order-table-odd-row,order-table-even-row" paginator="true"
-	               rows="20">
-	               <p:column headerText="Número do processo">
-	                      <h:outputText value="#{p.numeroProcesso}" />
-	               </p:column>
-	               <p:column headerText="Razão Social">
-	                      <h:outputText value="#{p.fornecedor.razaoSocial}" />
-	               </p:column>
-	               <p:column headerText="CNPJ">
-	                      <h:outputText value="#{p.fornecedor.CNPJ}" />
-	               </p:column>
-	               <p:column headerText="Fiscal responsável">
-	                      <h:outputText value="#{p.fiscalResponsavel}" />
-	               </p:column>
-	               <p:column headerText="Data do relato">
-	                      <h:outputText value="#{p.dataRelato}" >
-							<f:convertDateTime pattern="dd/MM/yyyy" />
-						   </h:outputText>
-	               </p:column>
-	               <p:column  exportable="false">
-	               		<h:form>
-							<p:commandButton ajax="false" icon="ui-icon-pencil" action="#{processoBean.editarProcesso(p)}">
-							</p:commandButton>
-							<p:commandButton icon="ui-icon-trash" update="@form" action="#{processoBean.excluirProcesso(p)}">
-								<p:confirm header="Confirmar" message="Deseja remover o processo: #{p.numeroProcesso}?" icon="ui-icon-alert" />
-							</p:commandButton>
+  			<br />
+  			<br />
+  			<h:form>
+	  			<h:commandLink value="Exportar processos">	    		
+		    		<p:dataExporter type="pdf" target="tblProcessos" fileName="relatorio_processos" encoding="iso-8859-1"></p:dataExporter>
+		    	</h:commandLink>	    	
+	  			<br/>
+	  			<br/>  			
+		         <p:dataTable emptyMessage="Não há processos cadastrados" id="tblProcessos"
+		               value="#{processoBean.processos}" var="p" styleClass="order-table"
+		               headerClass="order-table-header"
+		               rowClasses="order-table-odd-row,order-table-even-row" paginator="true"
+		               rows="20">
+		               <p:column headerText="Número do processo">
+		                      <h:outputText value="#{p.numeroProcesso}" />
+		               </p:column>
+		               <p:column headerText="Razão Social">
+		                      <h:outputText value="#{p.fornecedor.razaoSocial}" />
+		               </p:column>
+		               <p:column headerText="CNPJ">
+		                      <h:outputText value="#{p.fornecedor.CNPJ}" />
+		               </p:column>
+		               <p:column headerText="Fiscal responsável">
+		                      <h:outputText value="#{p.fiscalResponsavel}" />
+		               </p:column>
+		               <p:column headerText="Data do relato">
+		                      <h:outputText value="#{p.dataRelato}" >
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							   </h:outputText>
+		               </p:column>
+		               <p:column  exportable="false">
+		               		<h:form>
+								<p:commandButton ajax="false" icon="ui-icon-pencil" action="#{processoBean.editarProcesso(p)}">
+								</p:commandButton>
+								<p:commandButton icon="ui-icon-trash" update="@form" action="#{processoBean.excluirProcesso(p)}">
+									<p:confirm header="Confirmar" message="Deseja remover o processo: #{p.numeroProcesso}?" icon="ui-icon-alert" />
+								</p:commandButton>
+								
+								<p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+								    <p:commandButton title="GDelYesButton" value="Sim" styleClass="ui-confirmdialog-yes"/>
+								    <p:commandButton title="GDelNoButton" value="Não" styleClass="ui-confirmdialog-no" />
+								</p:confirmDialog>
+							</h:form>
 							
-							<p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
-							    <p:commandButton title="GDelYesButton" value="Sim" styleClass="ui-confirmdialog-yes"/>
-							    <p:commandButton title="GDelNoButton" value="Não" styleClass="ui-confirmdialog-no" />
-							</p:confirmDialog>
-						</h:form>
-						
-					</p:column>
-	         </p:dataTable>
+						</p:column>
+		         </p:dataTable>
+	         </h:form>
          </div>
   </h:body>
   </html>
